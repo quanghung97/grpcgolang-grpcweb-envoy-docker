@@ -17,6 +17,7 @@ ENV PATH=$PATH:$GOPATH/bin:/opt/protoc/bin
 # Copy the project to be executed
 RUN mkdir -p /js/src/grpc-demo 
 COPY client/client.js /js/src/grpc-demo/client/client.js
+COPY client/ssl /js/src/grpc-demo/client/ssl
 COPY index.html /js/src/grpc-demo/index.html
 COPY package.json /js/src/grpc-demo/package.json
 COPY pb/echo.proto /js/src/grpc-demo/pb/echo.proto

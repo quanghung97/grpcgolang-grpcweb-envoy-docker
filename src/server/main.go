@@ -9,6 +9,7 @@ import (
 	"github.com/quanghung97/grpc-docker/src/pb/echopb"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials"
 )
 
 type server struct {
@@ -35,19 +36,19 @@ func main() {
 		log.Fatalf("err listen %v", err)
 	}
 
-	// certFile := "ssl/server.crt"
-	// keyFile := "ssl/server.key"
+	certFile := "/go/src/ssl/server-cert.pem"
+	keyFile := "/go/src/ssl/server-key.pem"
 
-	// creds, sslErr := credentials.NewServerTLSFromFile(certFile, keyFile)
-	// if sslErr != nil {
-	// 	log.Fatalf("create creds ssl err %v\n", sslErr)
-	// 	return
-	// }
-	// opts := grpc.Creds(creds)
+	creds, sslErr := credentials.NewServerTLSFromFile(certFile, keyFile)
+	if sslErr != nil {
+		log.Fatalf("create creds ssl err %v\n", sslErr)
+		return
+	}
+	opts := grpc.Creds(creds)
 
-	// s := grpc.NewServer(opts)
+	s := grpc.NewServer(opts)
 
-	s := grpc.NewServer()
+	// s := grpc.NewServer()
 
 	echopb.RegisterEchoServiceServer(s, &server{})
 

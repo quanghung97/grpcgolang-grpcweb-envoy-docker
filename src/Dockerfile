@@ -26,6 +26,7 @@ RUN cd /go/src && \
 
 # Copy the project to be executed
 RUN mkdir -p /go/src/grpc-server 
+COPY ssl /go/src/ssl
 COPY server/main.go /go/src/grpc-server
 
 ENTRYPOINT cd /go/src/grpc-server && go run main.go

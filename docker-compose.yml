@@ -4,10 +4,10 @@ services:
     build: src/.
     ports:
       - "9090:9090"
-  client:
-    build: demo/.
-    ports:
-      - "8182:8182"
+  # client:
+  #   build: demo/.
+  #   ports:
+  #     - "8182:8182"
   envoy:
     build: config/.
     ports:
