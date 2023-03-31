@@ -6,7 +6,7 @@ var echoService = new EchoServiceClient('http://localhost:8080');
 var request = new EchoRequest();
 request.setMessage('Hello World!');
 
-const metadata = {'custom-header-1': 'value1'};
+const metadata = {'authorization': 'uuid'};
 
 echoService.echo(request, metadata, function(err, response) {
     try {
